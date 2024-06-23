@@ -77,6 +77,11 @@ USER mumble
 EXPOSE 64738/tcp 64738/udp
 COPY entrypoint.sh /entrypoint.sh
 
+# Create blank file /data/mumble_server_config.ini
+RUN touch /data/mumble_server_config.ini
+# Chmod to allow entrypoint.sh to access /data/mumble_server_config.ini
+RUN chmod 777 /data/mumble_server_config.ini
+
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/bin/mumble-server", "-fg"]
 
