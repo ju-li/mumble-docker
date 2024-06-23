@@ -76,18 +76,12 @@ RUN mkdir -p /data && chown -R mumble:mumble /data && chown -R mumble:mumble /et
 USER mumble
 EXPOSE 64738/tcp 64738/udp
 COPY entrypoint.sh /entrypoint.sh
-COPY entrypoint.sh /data/entrypoint.sh
 
 # Create blank file /data/mumble_server_config.ini
 RUN touch /data/mumble_server_config.ini
 # Chmod to allow entrypoint.sh to access /data/mumble_server_config.ini
 RUN chmod 777 /data/mumble_server_config.ini
-
-RUN ls data/
-
-CMD ['COPY', '/entrypoint.sh', '/data/entrypoint.sh']
-
-CMD ['ls', 'data/']
+RUN chmod 777 /data
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/bin/mumble-server", "-fg"]

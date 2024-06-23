@@ -15,12 +15,6 @@ readonly SENSITIVE_CONFIGS=(
 	"sslPassPhrase"
 )
 
-# create an empty config file
-touch "${CONFIG_FILE}"
-
-# chmod the config file
-chmod 777 "${CONFIG_FILE}"
-
 # Compile list of configuration options from the bare-bones config
 readarray -t existing_config_options < <(sed -En "s/$CONFIG_REGEX/\2/p" "$BARE_BONES_CONFIG_FILE")
 
