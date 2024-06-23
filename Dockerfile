@@ -83,6 +83,10 @@ RUN touch /data/mumble_server_config.ini
 # Chmod to allow entrypoint.sh to access /data/mumble_server_config.ini
 RUN chmod 777 /data/mumble_server_config.ini
 
+CMD ['COPY', '/entrypoint.sh', '/data/entrypoint.sh']
+
+CMD ['ls', 'data/']
+
 ENTRYPOINT ["/data/entrypoint.sh"]
 CMD ["/usr/bin/mumble-server", "-fg"]
 
