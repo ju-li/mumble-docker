@@ -72,17 +72,16 @@ RUN groupadd --gid $MUMBLE_GID mumble && useradd --uid $MUMBLE_UID --gid $MUMBLE
 COPY --from=build /mumble/repo/build/mumble-server /usr/bin/mumble-server
 COPY --from=build /mumble/repo/default_config.ini /etc/mumble/bare_config.ini
 
-RUN mkdir -p /data && chown -R mumble:mumble /etc/mumble
+RUN mkdir -p /data && chown -R mumble:mumble /data && chown -R mumble:mumble /etc/mumble
 USER mumble
 EXPOSE 64738/tcp 64738/udp
 COPY entrypoint.sh /entrypoint.sh
 
-RUN chmod -R 777 /data
 # Create blank file /data/mumble_server_config.ini
 RUN touch /data/mumble_server_config.ini
 # Chmod to allow entrypoint.sh to access /data/mumble_server_config.ini
 RUN chmod 777 /data/mumble_server_config.ini
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/bin/su", "- mumble", "-c", "/entrypoint.sh"]
 CMD ["/usr/bin/mumble-server", "-fg"]
 
