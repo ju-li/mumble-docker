@@ -15,6 +15,9 @@ readonly SENSITIVE_CONFIGS=(
 	"sslPassPhrase"
 )
 
+# create an empty config file
+touch "${CONFIG_FILE}"
+
 # chmod the config file
 chmod 777 "${CONFIG_FILE}"
 
