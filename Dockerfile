@@ -89,6 +89,6 @@ CMD ['COPY', '/entrypoint.sh', '/data/entrypoint.sh']
 
 CMD ['ls', 'data/']
 
-ENTRYPOINT ["data/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/bin/mumble-server", "-fg"]
 

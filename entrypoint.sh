@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-readonly DATA_DIR="/data"
+DATA_DIR="/data"
 readonly BARE_BONES_CONFIG_FILE="/etc/mumble/bare_config.ini"
 readonly CONFIG_REGEX="^(\;|\#)?\ *([a-zA-Z_0-9]+)=.*"
 CONFIG_FILE="${DATA_DIR}/mumble_server_config.ini"
